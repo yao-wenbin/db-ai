@@ -5,6 +5,7 @@ import io.github.yaowenbin.commons.file.Files;
 import io.github.yaowenbin.commons.string.Strings;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -36,19 +37,24 @@ public class DbService {
     }
 
     public void initialize(String dsKey, String sql){
-        HikariDataSource ds = Optional.ofNullable(dataSourceMap.get(dsKey)).orElseThrow(() -> new RuntimeException(Strings.format("please create a datasource using /datasources api with key", dsKey)));
+        HikariDataSource ds = Optional.ofNullable(dataSourceMap.get(dsKey))
+                .orElseThrow(() -> new RuntimeException(Strings.format("please create a datasource using /datasources api with key", dsKey)));
+        Resource resource = convertToResource(sql);
 
+        try {
+            initializer.initialize(ds, resource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Resource convertToResource(String sql) {
         Path sqlPath;
         try {
             sqlPath = Files.writeString(Path.of("./tmp.sql"), sql);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        try {
-            initializer.initialize(ds, new FileSystemResource(sqlPath));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return new FileSystemResource(sqlPath);
     }
 }
