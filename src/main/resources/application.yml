@@ -5,3 +5,4 @@ spring:
 ai:
   # when key is empty or mock is true. Application will AI service wil running mock mode.
   key: something
+  mock: true
