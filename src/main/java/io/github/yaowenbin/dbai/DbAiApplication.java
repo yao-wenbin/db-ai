@@ -1,4 +1,4 @@
-package io.github.yaowenbin;
+package io.github.yaowenbin.dbai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
