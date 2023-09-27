@@ -3,4 +3,5 @@ spring:
     name: db-ai
 
 ai:
-  key: key of open-ai api
+  # when key is empty or mock is true. Application will AI service wil running mock mode.
+  key: something
