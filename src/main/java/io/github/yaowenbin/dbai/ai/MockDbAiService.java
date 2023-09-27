@@ -29,7 +29,7 @@ public class MockDbAiService extends DbAiService{
                                           description TEXT,
                                           price DECIMAL(10, 2) NOT NULL
                 );
-                DROP TABLE IF EXISTS products;         
+                DROP TABLE IF EXISTS orders;         
                 CREATE TABLE orders (
                                         order_id INT PRIMARY KEY AUTO_INCREMENT,
                                         user_id INT NOT NULL,
