@@ -4,11 +4,10 @@ import com.zaxxer.hikari.HikariDataSource;
 import io.github.yaowenbin.dbai.SpringContextTest;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.util.ResourceUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,14 +21,14 @@ public class DbInitializerTest extends SpringContextTest {
 
     @Test
     void initialize() throws FileNotFoundException, SQLException {
-        File schemaSql = ResourceUtils.getFile("classpath:schema.sql");
+        ClassPathResource resource = new ClassPathResource("schema.sql");
         HikariDataSource ds = new HikariDataSource();
         ds.setUsername("root");
         ds.setPassword("root");
         ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/test");
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        dbInitializer.initialize(ds, schemaSql);
+        dbInitializer.initialize(ds, resource);
 
         assertTableExists(ds, List.of("user", "product"));
     }

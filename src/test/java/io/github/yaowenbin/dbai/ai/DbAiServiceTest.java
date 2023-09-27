@@ -1,5 +1,6 @@
 package io.github.yaowenbin.dbai.ai;
 
+import io.github.yaowenbin.commons.file.Files;
 import io.github.yaowenbin.dbai.SpringContextTest;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,6 +23,11 @@ class DbAiServiceTest extends SpringContextTest {
     @Test
     void loadPrompt() {
 
+    }
+
+    @Test
+    void writeStringToFile() throws IOException {
+        Files.writeString(Path.of("./tmp.sql"), "test");
     }
 
     @Test
