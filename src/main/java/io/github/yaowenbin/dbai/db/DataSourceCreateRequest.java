@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class DataSourceCreateRequest {
 
+    private String key;
+
     private String username;
 
     private String password;
