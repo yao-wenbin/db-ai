@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -71,7 +72,7 @@ class DbAiServiceTest extends SpringContextTest {
                     FOREIGN KEY (order_id) REFERENCES orders(order_id)
                 );
                 """;
-        String sqlFile = dbAiService.storeToFile(prompt);
+        File sqlFile = dbAiService.storeToFile(prompt);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(sqlFile))) {
             String res = reader.lines().collect(Collectors.joining());

@@ -7,7 +7,6 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,10 +25,8 @@ public class DbAiService extends BaseAiService {
              prompt = String.join("\n", Files.readAllLines(promptTxt.toPath()));
 
              log.info("db ai service 's prompt from {} has been loaded: {}", promptSource, promptTxt);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(Strings.format("{} for dbAiService not found", promptSource));
         } catch (IOException e) {
-            throw new RuntimeException(Strings.format("prompt.txt cannot be read, please check privileges of file.", promptSource));
+            throw new RuntimeException(Strings.format("prompt.txt cannot be read, please check exists or privileges of file.", promptSource));
         }
     }
 
@@ -43,13 +40,12 @@ public class DbAiService extends BaseAiService {
      * @param keyword in prompt.
      * @return path of sql file stored.
      */
-    public String generateSQLFile(String keyword) {
+    public File generateSQLFile(String keyword) {
         var sql = generate(keyword);
-        // ResourceUtils.getFile()
         return storeToFile(sql);
     }
 
-    public String storeToFile(String sql) {
+    public File storeToFile(String sql) {
         File sqlFile = new File("./schema.sql");
         if (!sqlFile.exists()) {
             try {
@@ -63,6 +59,6 @@ public class DbAiService extends BaseAiService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return sqlFile.getAbsolutePath();
+        return sqlFile;
     }
 }

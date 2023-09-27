@@ -13,7 +13,7 @@ class DbApiTest extends SpringContextTest {
 
     @Test
     void createDataSourceApi() throws Exception {
-        String json =  JSONObject.of("url", "127.0.0.1", "username", "root", "password", "root", "schema", "test").toJSONString();
+        String json =  JSONObject.of("key", "ds1", "url", "127.0.0.1", "username", "root", "password", "root", "schema", "test").toJSONString();
 
         mvc.perform(post("/datasources")
                         .contentType(MediaType.APPLICATION_JSON)
