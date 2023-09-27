@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DefailtAiService extends SpringContextTest {
+public class DefaultAiServiceTest extends SpringContextTest {
 
     @Resource
     DefaultAiService aiService;
