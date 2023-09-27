@@ -31,6 +31,7 @@ class DbAiServiceTest extends SpringContextTest {
     @Test
     void storeToFile() throws IOException {
         String prompt = """
+                USE TEST;
                 CREATE TABLE users (
                     user_id INT PRIMARY KEY AUTO_INCREMENT,
                     username VARCHAR(255) NOT NULL,

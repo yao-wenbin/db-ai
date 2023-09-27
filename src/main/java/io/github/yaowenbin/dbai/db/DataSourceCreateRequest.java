@@ -22,11 +22,12 @@ public class DataSourceCreateRequest {
         ds.setJdbcUrl(buildJdbcUrl());
         ds.setUsername(username);
         ds.setPassword(password);
+        ds.setSchema(schema);
         return ds;
     }
 
     public String buildJdbcUrl() {
-        return Strings.format("jdbc:mysql://{}/{}", url, schema);
+        return Strings.format("jdbc:mysql://{}", url, schema);
     }
 
 }

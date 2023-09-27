@@ -34,6 +34,7 @@ class DbApiTest extends SpringContextTest {
     @Order(2)
     void initializedDbApi() throws Exception {
         String json = JSONObject.of("sql", """
+                USE TEST;
                 drop table if exists user;
                 create table user
                 (

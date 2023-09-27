@@ -10,8 +10,12 @@ import java.sql.SQLException;
 @Service
 public class DbInitializer {
 
-    public void initialize(HikariDataSource ds, Resource resource) throws SQLException {
-        ScriptUtils.executeSqlScript(ds.getConnection(), resource);
+    public void initialize(HikariDataSource ds, Resource resource) {
+        try {
+            ScriptUtils.executeSqlScript(ds.getConnection(), resource);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

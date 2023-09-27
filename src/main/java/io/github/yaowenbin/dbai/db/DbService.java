@@ -28,7 +28,7 @@ public class DbService {
         HikariDataSource ds =
                 command.convert();
 
-        try (Connection conn = ds.getConnection()) {
+        try (Connection ignored = ds.getConnection()) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -39,13 +39,10 @@ public class DbService {
     public void initialize(String dsKey, String sql){
         HikariDataSource ds = Optional.ofNullable(dataSourceMap.get(dsKey))
                 .orElseThrow(() -> new RuntimeException(Strings.format("please create a datasource using /datasources api with key", dsKey)));
+
         Resource resource = convertToResource(sql);
 
-        try {
-            initializer.initialize(ds, resource);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        initializer.initialize(ds, resource);
     }
 
     public Resource convertToResource(String sql) {
