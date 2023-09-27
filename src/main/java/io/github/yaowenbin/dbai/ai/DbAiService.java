@@ -2,7 +2,6 @@ package io.github.yaowenbin.dbai.ai;
 
 import io.github.yaowenbin.commons.string.Strings;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.BufferedWriter;
@@ -11,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@Service
 @Slf4j
 public class DbAiService extends BaseAiService {
 
