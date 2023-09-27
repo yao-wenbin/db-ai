@@ -33,7 +33,28 @@ public class DbService {
             throw new RuntimeException(e);
         }
 
+        ds = replaceJdbcUrlWithDefaultSchema(ds);
+
         dataSourceMap.put(command.getKey(), ds);
+    }
+
+    private HikariDataSource replaceJdbcUrlWithDefaultSchema(HikariDataSource ds) {
+        String schema = ds.getSchema();
+        try {
+            initializer.makeSureSchemaExists(ds);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String newJdbcUrlWithDefaultSchema = Strings.format("{}/{}", ds.getJdbcUrl(), schema);
+
+        HikariDataSource newDs = new HikariDataSource();
+        newDs.setJdbcUrl(newJdbcUrlWithDefaultSchema);
+        newDs.setUsername(ds.getUsername());
+        newDs.setPassword(ds.getPassword());
+        newDs.setSchema(ds.getSchema());
+
+        return newDs;
     }
 
     public void initialize(String dsKey, String sql){

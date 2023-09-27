@@ -14,7 +14,6 @@ public class MockDbAiService extends DbAiService{
     @Override
     public String generate(String keyword) {
         return """
-                USE TEST;
                 DROP TABLE IF EXISTS users;
                 CREATE TABLE users (
                                        user_id INT PRIMARY KEY AUTO_INCREMENT,

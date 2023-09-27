@@ -22,7 +22,7 @@ public class EndToEndTest extends SpringContextTest{
     final String dbUsername = "root";
     final String dbPassword = "root";
     final String dbUrl = "127.0.0.1:3306";
-    final String schema = "test";
+    final String schema = "test3";
 
     @Test
     void testcase1() throws Exception {
