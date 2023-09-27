@@ -1,16 +1,15 @@
 package io.github.yaowenbin.dbai.ai;
 
 import io.github.yaowenbin.dbai.SpringContextTest;
-import io.github.yaowenbin.dbai.ai.AiService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AiServiceTest extends SpringContextTest {
+public class DefailtAiService extends SpringContextTest {
 
     @Resource
-    AiService aiService;
+    DefaultAiService aiService;
 
     @Test
     void generate() {

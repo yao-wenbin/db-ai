@@ -3,4 +3,4 @@ spring:
     name: db-ai
 
 ai:
-  key:
+  key: key of open-ai api
