@@ -1,0 +1,6 @@
+I am Application Developer, please give me a complete DDL SQL based on the application description following:
+"""{}"""
+the response should only contain DLL SQL. like:
+CREATE TABLE users (
+);
+...
