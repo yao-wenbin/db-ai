@@ -6,8 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * integration test for {@link AiApi}
+ */
 
 class AiApiTest extends SpringContextTest {
 
@@ -18,9 +23,9 @@ class AiApiTest extends SpringContextTest {
         mvc.perform(post("/ai/generate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
-                .andExpect(status().isOk());
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isNotEmpty());
     }
-
-
 
 }

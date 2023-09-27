@@ -13,9 +13,8 @@ public class AiApi {
     private final DbAiService dbAiService;
 
     @PostMapping("/ai/generate")
-    public R<Void> generate(@RequestBody AiGenerateRequest request) {
-        dbAiService.generateSQLFile(request.getPrompt());
-        return R.success();
+    public R<String> generate(@RequestBody AiGenerateRequest request) {
+        return R.success(dbAiService.generate(request.getPrompt()));
     }
 
 }
