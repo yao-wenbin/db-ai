@@ -1,6 +1,6 @@
 package io.github.yaowenbin.dbai.db;
 
-import io.github.yaowenbin.dbai.common.R;
+import io.github.yaowenbin.commons.http.R;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

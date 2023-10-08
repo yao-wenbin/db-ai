@@ -1,6 +1,6 @@
 package io.github.yaowenbin.dbai.ai;
 
-import io.github.yaowenbin.dbai.common.R;
+import io.github.yaowenbin.commons.http.R;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
